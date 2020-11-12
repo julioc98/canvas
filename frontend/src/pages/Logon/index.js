@@ -41,11 +41,6 @@ export default function Logon() {
     return (
         <div className='back'>
             <div className='cover'>
-                    <Lottie
-                        options={defaultOptions}
-                        height={200}
-                        width={200}
-                    />
                 <img src={heroesImg} alt="Heroes" />
             </div>
             <div className="logon-container">
