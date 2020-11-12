@@ -41,10 +41,7 @@ export default function Register() {
         <div className="register-container">
             <div className="content">
                 <section>
-                    <img src={logoImg} alt="Be The Hero" />
-
-                    <h1>Cadastro</h1>
-                    <p>Faça seu cadastro, entre na plataforma e planeje sua vida com muito mais facilidade.</p>
+                    <img className="logo" src={logoImg} alt="Canvas Projeto de Vida" />
                     <form onSubmit={handleRegister}>
                         <input
                             placeholder="Nome Completo"

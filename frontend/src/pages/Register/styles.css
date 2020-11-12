@@ -61,3 +61,8 @@
     align-items: center;
     justify-content: center;
 }
+
+.logo{
+    width: 50%;
+    margin-bottom: 10%;
+}
