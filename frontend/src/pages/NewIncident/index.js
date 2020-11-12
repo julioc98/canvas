@@ -71,7 +71,7 @@ export default function NewIncident() {
     return (
         <div className="new-incident-container">
             <section>
-                <img className="logo" src={logoImg} alt="Be The Hero" />
+                <img className="logoIncident" src={logoImg} alt="Be The Hero" />
                 <input
                     placeholder="Título do Canvas"
                     value={title}
@@ -80,92 +80,74 @@ export default function NewIncident() {
             </section>
             <div className="content">
                 <form onSubmit={handleNewIncident}>
-                    <div className="canvas-line1">
-                        <div>
-                            <p>O que eu sei fazer?
-                            (Formação, habilidades,
-                            experiências, projetos)
-                            </p>
-                            <textarea
-                                placeholder="Descrição"
-                                value={description}
-                                onChange={e => setDescription(e.target.value)}
-                            />
-                        </div>
-                        <div className="canvas-line1-div">
-                            <div>
-                                <p>
-                                    Quais meus sonhos?
+                    <div className="canvas-content">
+                        <div className="canvas-line1">
+                            <div className="canvas-div">
+                                <textarea
+                                    placeholder="O que eu sei fazer?
+                                    (Formação, habilidades,
+                                    experiências, projetos)
+                                    "
+                                    value={description}
+                                    onChange={e => setDescription(e.target.value)}
+                                />
+                            </div>
+                            <div className="canvas-line1-div">
+                                <div>
+                                    <textarea
+                                        placeholder="Quais meus sonhos?"
+                                        value={description}
+                                        onChange={e => setDescription(e.target.value)}
+                                    />
+                                </div>
+                                <div>
 
-                            </p>
+                                    <textarea
+                                        placeholder="Quais meus valores?"
+                                        value={description}
+                                        onChange={e => setDescription(e.target.value)}
+                                    />
+                                </div>
+                            </div>
+                            <div className="canvas-div">
                                 <textarea
-                                    placeholder="Descrição"
+                                    placeholder="Quem sou eu? 
+                                    (características, interesses e hobbies e de onde eu venho)"
                                     value={description}
                                     onChange={e => setDescription(e.target.value)}
                                 />
                             </div>
-                            <div>
-                                <p>
-                                    Quais meus valores?
-                            </p>
-                                <textarea
-                                    placeholder="Descrição"
-                                    value={description}
-                                    onChange={e => setDescription(e.target.value)}
-                                />
+                            <div className="canvas-line1-div">
+                                <div>
+                                    <textarea
+                                        placeholder="Quem eu conheço?
+                                        (rede de relações pessoais,
+                                        acadêmicas e profissionais)"
+                                        value={description}
+                                        onChange={e => setDescription(e.target.value)}
+                                    />
+                                </div>
+                                <div>
+                                    <textarea
+                                        placeholder="Como eu me expresso?
+                                        Quais canais uso?
+                                        (redes sociais/blogs/etc)
+                                        Quais linguagens uso?
+                                        (oral, escrita, desenho, outras)"
+                                        value={description}
+                                        onChange={e => setDescription(e.target.value)}
+                                    />
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <p>
-                                Quem sou eu? (características, interesses e hobbies
-                                e
-                                de onde eu venho)
-                            </p>
-                            <textarea
-                                placeholder="Descrição"
-                                value={description}
-                                onChange={e => setDescription(e.target.value)}
-                            />
-                        </div>
-                        <div className="canvas-line1-div">
-                            <div>
-                                <p>
-                                    Quem eu conheço?
-                                    (rede de relações pessoais,
-                                    acadêmicas e profissionais)
-                                </p>
-                                <textarea
-                                    placeholder="Descrição"
-                                    value={description}
-                                    onChange={e => setDescription(e.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <p>
-                                    Como eu me expresso?
-                                    Quais
-                                    canais uso?
-                                    (redes sociais/blogs/etc)
-                                    Quais linguagens uso?
-                                    (oral, escrita, desenho,
-                                    outras)
-                                </p>
-                                <textarea
-                                    placeholder="Descrição"
-                                    value={description}
-                                    onChange={e => setDescription(e.target.value)}
-                                />
-                            </div>
+                        <div className="canvas-div">
+                        <textarea
+                            placeholder="Quais novos recursos eu preciso construir ou reforçar para ajudar a viabilizar meus sonhos?"
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                        />
                         </div>
                     </div>
-                    <p>
-                    Quais novos recursos eu preciso construir ou reforçar para ajudar a viabilizar meus sonhos?
-                    </p>
-                    <textarea
-                        placeholder="Descrição"
-                        value={description}
-                        onChange={e => setDescription(e.target.value)}
-                    />
                     <div className="canva-footer">
                         <Link className="back-link link" to="/profile">
                             <FiArrowLeft size={16} color="#E02041" />

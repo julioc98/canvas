@@ -1,30 +1,26 @@
 .new-incident-container {
     width: 100%;
-    max-width: 1120px;
-    height: 100vh;
+    height: 100%;
     margin: 0 auto;
-    margin-top: 4%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    
 }
 
 .new-incident-container .content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    width: 80%;
 }
 
 .new-incident-container section {
     width: 100%;
     max-width: 1300px;
     margin: 1%;
-    position: absolute;
     display: flex;
     flex-direction: row;
     width: 100%;
-    top: 0px;
-    left: 0px;
+
 }
 
 .new-incident-container section input {
@@ -44,37 +40,21 @@
 
 .new-incident-container .content form {
     width: 100%;
-    background-color: #f1f0f5;
 }
 
 .new-incident-container .content form input,
 .new-incident-container .content form textarea {
     margin-top: 8px;
+    height: 100%;
+    padding: 0px;
+    width: 100%;
 }
 
 .new-incident-container .content form .input-group {
     display: flex;
 }
 
-.new-incident-container .content form .input-group input+input {
-    margin-left: 8px;
-}
-
-.cover {
-    background: #ffffff;
-    width: 50%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cover section h1 {
-    color: #737380;
-    margin-left: 15px;
-}
-
-.logo {
+.logoIncident {
     width: 20%;
     margin-right: 2%;
 }
@@ -87,15 +67,33 @@
 }
 
 .salvar {
-    width: 20%; 
+    width: 20%;
+    margin-bottom: 2%; 
 }
 
 .canvas-line1 {
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 .canvas-line1-div {
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.canvas-content {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 3%;
+    padding-top: 2%;
+    background-color: #f1f0f5;
+    box-shadow: 0 0 100px rgb(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center; 
+}
+
+.canvas-div {
+    width: 100%;
 }
