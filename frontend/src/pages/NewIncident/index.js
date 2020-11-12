@@ -80,47 +80,92 @@ export default function NewIncident() {
             </section>
             <div className="content">
                 <form onSubmit={handleNewIncident}>
-                    <div>
-                        <p>O que eu sei fazer?
-                        (Formação, habilidades,
-                        experiências, projetos)
-                        </p>
-                        <textarea
-                            placeholder="Descrição"
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}
-                        />
-                        <textarea
-                            placeholder="Descrição"
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}
-                        />
-                        <textarea
-                            placeholder="Descrição"
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}
-                        />
-                        <textarea
-                            placeholder="Descrição"
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}
-                        />
-                        <textarea
-                            placeholder="Descrição"
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}
-                        />
-                        <textarea
-                            placeholder="Descrição"
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}
-                        />
-                        <textarea
-                            placeholder="Descrição"
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}
-                        />
+                    <div className="canvas-line1">
+                        <div>
+                            <p>O que eu sei fazer?
+                            (Formação, habilidades,
+                            experiências, projetos)
+                            </p>
+                            <textarea
+                                placeholder="Descrição"
+                                value={description}
+                                onChange={e => setDescription(e.target.value)}
+                            />
+                        </div>
+                        <div className="canvas-line1-div">
+                            <div>
+                                <p>
+                                    Quais meus sonhos?
+
+                            </p>
+                                <textarea
+                                    placeholder="Descrição"
+                                    value={description}
+                                    onChange={e => setDescription(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <p>
+                                    Quais meus valores?
+                            </p>
+                                <textarea
+                                    placeholder="Descrição"
+                                    value={description}
+                                    onChange={e => setDescription(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <p>
+                                Quem sou eu? (características, interesses e hobbies
+                                e
+                                de onde eu venho)
+                            </p>
+                            <textarea
+                                placeholder="Descrição"
+                                value={description}
+                                onChange={e => setDescription(e.target.value)}
+                            />
+                        </div>
+                        <div className="canvas-line1-div">
+                            <div>
+                                <p>
+                                    Quem eu conheço?
+                                    (rede de relações pessoais,
+                                    acadêmicas e profissionais)
+                                </p>
+                                <textarea
+                                    placeholder="Descrição"
+                                    value={description}
+                                    onChange={e => setDescription(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <p>
+                                    Como eu me expresso?
+                                    Quais
+                                    canais uso?
+                                    (redes sociais/blogs/etc)
+                                    Quais linguagens uso?
+                                    (oral, escrita, desenho,
+                                    outras)
+                                </p>
+                                <textarea
+                                    placeholder="Descrição"
+                                    value={description}
+                                    onChange={e => setDescription(e.target.value)}
+                                />
+                            </div>
+                        </div>
                     </div>
+                    <p>
+                    Quais novos recursos eu preciso construir ou reforçar para ajudar a viabilizar meus sonhos?
+                    </p>
+                    <textarea
+                        placeholder="Descrição"
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                    />
                     <div className="canva-footer">
                         <Link className="back-link link" to="/profile">
                             <FiArrowLeft size={16} color="#E02041" />
