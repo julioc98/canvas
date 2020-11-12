@@ -1,0 +1,63 @@
+.register-container {
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-container .content {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-container .content section {
+    width: 100%;
+    max-width: 450px;
+}
+
+.register-container .content section img {
+    width: 100%;
+}
+.register-container .content section h1 {
+    margin: 32px 0 12px;
+    font-size: 32px;
+    color: #ffff;
+}
+
+.register-container .content section p {
+    font-size: 18px;
+    color: #ffff;
+    line-height: 32px;
+}
+
+.register-container .content form {
+    width: 100%;
+    max-width: 450px;
+}
+
+.register-container .content form input {
+    margin-top: 8px;
+}
+
+.register-container .content form .input-group {
+    display: flex;
+}
+
+.register-container .content form .input-group input + input {
+    margin-left: 8px;
+}
+
+.register-cover {
+    width: 50%;
+    height: 100vh;
+    background-color: #ffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
