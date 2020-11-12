@@ -15,8 +15,8 @@ export default function NewIncident() {
 
     const history = useHistory();
 
-    const ongId =  localStorage.getItem('ongId');
-    const selectedCanvas =  localStorage.getItem('selectedCanvas');
+    const ongId = localStorage.getItem('ongId');
+    const selectedCanvas = localStorage.getItem('selectedCanvas');
 
     useEffect(() => {
         api.get('profile',
@@ -25,7 +25,7 @@ export default function NewIncident() {
                     Authorization: ongId,
                 },
             }
-        ).then(response => { 
+        ).then(response => {
             const canvas = response.data.filter(canva => canva.id == selectedCanvas);
             if (canvas[0] !== undefined) {
                 setTitle(canvas[0].title);
@@ -35,7 +35,7 @@ export default function NewIncident() {
         });
     }, [ongId]);
 
-    async function handleNewIncident(e){
+    async function handleNewIncident(e) {
         e.preventDefault();
 
         const data = {
@@ -45,21 +45,21 @@ export default function NewIncident() {
         };
 
         try {
-            if(selectedCanvas){
+            if (selectedCanvas) {
                 await api.delete(`incidents/${selectedCanvas}`,
+                    {
+                        headers: {
+                            Authorization: ongId,
+                        },
+                    }
+                );
+            }
+            await api.post('incidents', data,
                 {
                     headers: {
                         Authorization: ongId,
                     },
-                }
-                );
-            }
-            await api.post('incidents', data,
-            {
-                headers:{
-                    Authorization: ongId,
-                },
-            });
+                });
 
             history.push('/profile');
         } catch (error) {
@@ -68,42 +68,68 @@ export default function NewIncident() {
 
     }
 
-    return(
+    return (
         <div className="new-incident-container">
-        <div className="content">
             <section>
-                <img src={logoImg} alt="Be The Hero"/>
-
-                <h1>Cadastrar novo caso</h1>
-                <p>Descreva o caso detalhadamente para encontrar um heroi para resolver isso.</p>
-
-                <Link className="back-link" to="/profile">
-                    <FiArrowLeft size={16} color="#E02041" />
-                    Voltar para Home
-                </Link>
-            </section>  
-            <form onSubmit={ handleNewIncident }>
-            <input 
-                placeholder="Título do caso"
-                value={title}
-                onChange={ e => setTitle(e.target.value)}
-            />
-
-            <textarea 
-                placeholder="Descrição"
-                value={description}
-                onChange={ e => setDescription(e.target.value)}
-            />
-
-            <input 
-                placeholder="Valor em reais"
-                value={value}
-                onChange={ e => setValue(e.target.value)}
-            />
-
-            <button className="button" type="submit">Salvar</button>
-            </form>
+                <img className="logo" src={logoImg} alt="Be The Hero" />
+                <input
+                    placeholder="Título do Canvas"
+                    value={title}
+                    onChange={e => setTitle(e.target.value)}
+                />
+            </section>
+            <div className="content">
+                <form onSubmit={handleNewIncident}>
+                    <div>
+                        <p>O que eu sei fazer?
+                        (Formação, habilidades,
+                        experiências, projetos)
+                        </p>
+                        <textarea
+                            placeholder="Descrição"
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                        />
+                        <textarea
+                            placeholder="Descrição"
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                        />
+                        <textarea
+                            placeholder="Descrição"
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                        />
+                        <textarea
+                            placeholder="Descrição"
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                        />
+                        <textarea
+                            placeholder="Descrição"
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                        />
+                        <textarea
+                            placeholder="Descrição"
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                        />
+                        <textarea
+                            placeholder="Descrição"
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                        />
+                    </div>
+                    <div className="canva-footer">
+                        <Link className="back-link link" to="/profile">
+                            <FiArrowLeft size={16} color="#E02041" />
+                             Voltar para Home
+                        </Link>
+                        <button className="button salvar" type="submit">Salvar Canvas</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
     );
 }
