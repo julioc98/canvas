@@ -64,9 +64,14 @@
 
 .register-cover img{
     width: 90%;
+    position: relative;
 }
 
 .logoRegister{
     width: 50%;
     margin-bottom: 10%;
+}
+
+.animation {
+    position: absolute;
 }

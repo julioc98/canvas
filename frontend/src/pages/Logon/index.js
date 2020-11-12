@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi'
-import Lottie from 'react-lottie';
-import animationData from '../../assets/heart.json';
 
 import './styles.css';
 
@@ -14,14 +12,6 @@ export default function Logon() {
     const [id, setId] = useState('');
     const history = useHistory();
 
-    const defaultOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: animationData,
-        rendererSettings: {
-            preserveAspectRatio: "xMidYMid slice"
-        }
-    };
 
     async function handleLogin(e) {
         e.preventDefault();

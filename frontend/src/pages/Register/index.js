@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi'
+import { FiArrowLeft } from 'react-icons/fi';
+import Lottie from 'react-lottie';
+import animationData from '../../assets/leaf.json';
 
 import api from '../../services/api';
 import './styles.css';
@@ -16,6 +18,15 @@ export default function Register() {
     const [uf, setUf] = useState('');
 
     const history = useHistory();
+
+    const defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: animationData,
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice"
+        }
+    };
 
     async function handleRegister(e) {
         e.preventDefault();
@@ -74,13 +85,18 @@ export default function Register() {
                         <button className="button" type="submit">Cadastrar</button>
                         <Link className="back-link" to="/">
                             <FiArrowLeft size={16} color="#ff6583" />
-                        Já tenho cadastro
-                    </Link>
+                                Já tenho cadastro
+                        </Link>
                     </form>
                 </section>
             </div>
 
             <div className="register-cover">
+            <Lottie className="animation"
+                        options={defaultOptions}
+                        height={300}
+                        width={300}
+                    />
                 <img src={coverRegister} alt="Canvas Projeto de Vida" />
             </div>
         </div>

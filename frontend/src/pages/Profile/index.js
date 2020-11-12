@@ -40,7 +40,7 @@ export default function Profile() {
 
             setIncidents(incidents.filter(incident => incident.id !== id))
         } catch (error) {
-            alert('Erro ao deletar caso, tente novamente');
+            alert('Erro ao deletar Canvas, tente novamente');
         }
     }
 
@@ -71,11 +71,11 @@ export default function Profile() {
     return (
         <div className="profile-container">
             <header>
-                <img src={logoImg} alt="Be The Hero" />
+                <img src={logoImg} alt="Canvas Projeto de Vida" />
                 <span>Bem vindo(a), {ongName}</span>
 
                 <Link className="button" onClick={handleCleanCanvas} to="/canvas">Cadastrar novo canvas</Link>
-                <button onClick={handleLogout} type="button">
+                <button onClick={handleLogout} type="button" alt="Sair">
                     <FiPower size={18} color="#E02041" />
                 </button>
             </header>
@@ -85,17 +85,14 @@ export default function Profile() {
                 <ul>
                     {incidents.map(incident => (
                         <li key={incident.id}>
-                            <strong>CASO:</strong>
+                            <strong>Título:</strong>
                             <p>{incident.title}</p>
 
                             <strong>DESCRIÇÃO:</strong>
                             <p>{incident.description}</p>
 
-                            <strong>VALOR:</strong>
-                            <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(incident.value)}</p>
-
                             <button onClick={() => handleEditCanvas(incident.id)} type="button">
-                                <FiEdit size={20} color="#a8a8b3" />
+                                <FiEdit size={20}  />
                             </button>
                         </li>
                     ))}
