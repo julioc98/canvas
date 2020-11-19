@@ -72,9 +72,6 @@ export default function Profile() {
                             <strong>Título:</strong>
                             <p>{incident.title}</p>
 
-                            <strong>DESCRIÇÃO:</strong>
-                            <p>{incident.description}</p>
-
                             <button onClick={() => handleEditCanvas(incident.id)} type="button">
                                 <FiEdit size={20}  />
                             </button>

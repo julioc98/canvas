@@ -14,8 +14,8 @@ export default function Register() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
-    const [city, setCity] = useState('');
-    const [uf, setUf] = useState('');
+    const [senha, setSenha] = useState('');
+    const [senhaConfirm, setSenhaConfirm] = useState('');
 
     const history = useHistory();
 
@@ -35,14 +35,18 @@ export default function Register() {
             name,
             email,
             whatsapp,
-            city,
-            uf,
+            senha,
+            senhaConfirm,
         };
 
         try {
-            const response = await api.post('ongs', data);
-            alert(`Seu ID de acesso: ${response.data.id}`);
-            history.push('/');
+            if(data.senha !== data.senhaConfirm) {
+                alert(`As senhas não conferem`);
+            } else {
+                const response = await api.post('ongs', data);
+                alert(`Cadastrado(a) com sucesso!`);
+                history.push('/');
+            }
         } catch (error) {
             alert('Erro no cadastro, tente novamente.');
         }
@@ -58,29 +62,38 @@ export default function Register() {
                             placeholder="Nome Completo"
                             value={name}
                             onChange={e => setName(e.target.value)}
+                            required
                         />
 
                         <input
                             type="email"
                             placeholder="E-Mail"
                             value={email}
+                            type="email"
+                            id="email"
                             onChange={e => setEmail(e.target.value)}
+                            required
                         />
 
                         <input
                             placeholder="WhatsApp"
                             value={whatsapp}
                             onChange={e => setWhatsapp(e.target.value)}
+                            required
                         />
                         <input
                             placeholder="Senha"
-                            value={whatsapp}
-                            onChange={e => setWhatsapp(e.target.value)}
+                            value={senha}
+                            type="password"
+                            onChange={e => setSenha(e.target.value)}
+                            required
                         />
                         <input
                             placeholder="Confirmar Senha"
-                            value={whatsapp}
-                            onChange={e => setWhatsapp(e.target.value)}
+                            value={senhaConfirm}
+                            type="password"
+                            onChange={e => setSenhaConfirm(e.target.value)}
+                            required
                         />
                         <button className="button" type="submit">Cadastrar</button>
                         <Link className="back-link" to="/">
@@ -96,7 +109,7 @@ export default function Register() {
                         options={defaultOptions}
                         height={300}
                         width={300}
-                    />
+            />
                 <img src={coverRegister} alt="Canvas Projeto de Vida" />
             </div>
         </div>
