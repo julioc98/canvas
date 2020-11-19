@@ -128,3 +128,9 @@
 .cinza {
     border:4px solid rgb(115 115 115);
 }
+
+.deletar {
+    width: 20%;
+    margin-bottom: 2%; 
+    background: #febe00;
+}

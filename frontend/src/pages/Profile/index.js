@@ -28,22 +28,6 @@ export default function Profile() {
         });
     }, [ongId]);
 
-    async function handleDeleteIncident(id) {
-        try {
-            await api.delete(`incidents/${id}`,
-                {
-                    headers: {
-                        Authorization: ongId,
-                    },
-                }
-            );
-
-            setIncidents(incidents.filter(incident => incident.id !== id))
-        } catch (error) {
-            alert('Erro ao deletar Canvas, tente novamente');
-        }
-    }
-
     async function handleEditCanvas(id) {
         try {
             localStorage.setItem('selectedCanvas', id);
