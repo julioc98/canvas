@@ -98,6 +98,7 @@ export default function Register() {
                             placeholder="Confirmar Senha"
                             value={passwordConfirm}
                             type="password"
+                            id="confirm_password"
                             onChange={e => setPasswordConfirm(e.target.value)}
                             required
                         />
