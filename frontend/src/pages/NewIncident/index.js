@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
+import { FiArrowLeft, FiTrash } from 'react-icons/fi';
+
 
 import api from '../../services/api';
 
@@ -96,8 +97,8 @@ export default function NewIncident() {
             alert('Erro ao deletar Canvas, tente novamente');
         }
     }
-      
-      
+
+
     return (
         <div className="new-incident-container">
             <section>
@@ -107,6 +108,7 @@ export default function NewIncident() {
                     value={title}
                     onChange={e => setTitle(e.target.value)}
                 />
+                <button className="button pdf" onClick={() => window.print()}>Exportar Canvas</button>
             </section>
             <div className="content">
                 <form onSubmit={handleNewIncident}>
@@ -172,8 +174,12 @@ export default function NewIncident() {
                             <FiArrowLeft size={16} color="#E02041" />
                              Voltar para Home
                         </Link>
-                            <button  style={{ display: (visible ? 'block' : 'none') }} className="button deletar" onClick={() => handleDeleteCanvas(incidents)} type="button">Descartar Canvas</button>
-                        <button className="button salvar" type="submit">Salvar Canvas</button>
+                        <div className="group-button">
+                        <button  className="button deletar" onClick={() => handleDeleteCanvas(incidents)} type="button">
+                            Descartar Canvas
+                        </button>
+                            <button className="button salvar" type="submit">Salvar Canvas</button>
+                        </div>
                     </div>
                 </form>
             </div>

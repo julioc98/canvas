@@ -1,3 +1,5 @@
+
+
 .new-incident-container {
     width: 100%;
     height: 100%;
@@ -6,7 +8,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    
 }
 
 .new-incident-container .content {
@@ -15,15 +16,12 @@
 
 .new-incident-container section {
     width: 100%;
-    max-width: 1300px;
     margin: 1%;
     display: flex;
-    flex-direction: row;
-
 }
 
 .new-incident-container section input {
-    width: 100%;
+    width: 50%;
 }
 
 .new-incident-container .content section h1 {
@@ -129,8 +127,64 @@
     border:4px solid rgb(115 115 115);
 }
 
+.salvar {
+    width: 20%;
+    margin-bottom: 2%; 
+}
+
 .deletar {
     width: 20%;
     margin-bottom: 2%; 
-    background: #febe00;
+    margin-right: 2%;
+    background-color: #febe00;
 }
+
+.group-button {
+    display: flex;
+    width: 80%;
+    justify-content: flex-end;
+}
+
+.pdf {
+    margin-left: 2%;
+    width: 20%;
+    margin: auto;
+}
+
+@media print {
+    * {
+        background: transparent;
+        color: #000;
+        text-shadow: none; 
+        filter: none;
+       -ms-filter: none;
+    }
+
+    .new-incident-container section{
+        display: none;
+    }
+    .canva-footer {
+        display: none;
+    }
+
+    body {
+        background: transparent;
+    }
+    .new-incident-container {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .new-incident-container .content form {
+        width: 1122px; height: 768px; 
+        display: flex;
+        justify-content: center;
+    }
+    @page {size: landscape}
+}
+
+

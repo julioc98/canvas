@@ -52,6 +52,10 @@ form textarea {
     resize: vertical;
 }
 
+p {
+    page-break-inside: avoid;
+  }  
+
 
 .button {
     width: 100%;
@@ -83,6 +87,7 @@ form textarea {
     text-decoration: none;
     font-weight: 500;
     transition: opacity 0.2s;
+    align-items: flex-start;
 }
 
 .back-link svg{

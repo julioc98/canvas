@@ -14,8 +14,8 @@ export default function Register() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
-    const [senha, setSenha] = useState('');
-    const [senhaConfirm, setSenhaConfirm] = useState('');
+    const [password, setpassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
 
     const history = useHistory();
 
@@ -35,12 +35,12 @@ export default function Register() {
             name,
             email,
             whatsapp,
-            senha,
-            senhaConfirm,
+            password,
+            passwordConfirm,
         };
 
         try {
-            if(data.senha !== data.senhaConfirm) {
+            if(data.password !== data.passwordConfirm) {
                 alert(`As senhas não conferem`);
             } else {
                 const response = await api.post('ongs', data);
@@ -61,6 +61,8 @@ export default function Register() {
                         <input
                             placeholder="Nome Completo"
                             value={name}
+                            id="name"
+                            type="name"
                             onChange={e => setName(e.target.value)}
                             required
                         />
@@ -78,21 +80,25 @@ export default function Register() {
                         <input
                             placeholder="WhatsApp"
                             value={whatsapp}
+                            type="number" 
+                            id="phone" 
+                            data-politespace data-grouplength="3,3,4" 
                             onChange={e => setWhatsapp(e.target.value)}
                             required
                         />
                         <input
                             placeholder="Senha"
-                            value={senha}
+                            value={password}
                             type="password"
-                            onChange={e => setSenha(e.target.value)}
+                            id="password"
+                            onChange={e => setpassword(e.target.value)}
                             required
                         />
                         <input
                             placeholder="Confirmar Senha"
-                            value={senhaConfirm}
+                            value={passwordConfirm}
                             type="password"
-                            onChange={e => setSenhaConfirm(e.target.value)}
+                            onChange={e => setPasswordConfirm(e.target.value)}
                             required
                         />
                         <button className="button" type="submit">Cadastrar</button>
