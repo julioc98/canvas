@@ -79,7 +79,7 @@ export default function Register() {
 
                         <input
                             placeholder="WhatsApp"
-                            value={whatsapp}
+                            value={whatsapp} 
                             type="number" 
                             id="phone" 
                             data-politespace data-grouplength="3,3,4" 
