@@ -61,3 +61,29 @@
     align-items: center;
     justify-content: center;
 }
+
+.register-cover img{
+    width: 90%;
+    position: relative;
+}
+
+.logoRegister{
+    width: 50%;
+    margin-bottom: 10%;
+}
+
+.animation {
+    position: absolute;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

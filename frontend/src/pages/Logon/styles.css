@@ -31,11 +31,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+.cover img{    
+    width: 100%;
 }
 
 
 .logo{
-    width: 90%;
+    width: 100%;
 }
 
 .back {
@@ -43,4 +48,9 @@
     height: 100vh;
     margin: 0 auto;
     display: flex;
+}
+
+.heart {
+    width: 50%;
+    height: 50%;
 }

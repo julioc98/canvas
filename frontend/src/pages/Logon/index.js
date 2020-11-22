@@ -9,8 +9,10 @@ import heroesImg from '../../assets/heroes.png';
 import api from '../../services/api';
 
 export default function Logon() {
+    const [email, setEmail] = useState('');
     const [id, setId] = useState('');
     const history = useHistory();
+
 
     async function handleLogin(e) {
         e.preventDefault();
@@ -39,13 +41,18 @@ export default function Logon() {
                     <form onSubmit={handleLogin}>
                         <input
                             placeholder="E-Mail"
-                            value={id}
-                            onChange={e => setId(e.target.value)}
+                            type="email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            required
+                            id="email"
                         />
                         <input
                             placeholder="Senha"
                             value={id}
+                            type="password"
                             onChange={e => setId(e.target.value)}
+                            required
                         />
                         <button className="button" type="submit">Entrar</button>
 
