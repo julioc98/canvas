@@ -2,6 +2,9 @@
 Projeto do Canvas para o Ideias de Futuro.
 
 ### Como iniciar
-npm i
+Rodar os seguintes comandos no terminal:
 
+```shell
+npm i
 npm start
+```
