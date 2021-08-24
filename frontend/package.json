@@ -34,5 +34,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  },
+  "homepage": "http://julioc98.github.io/canvas",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
 }
