@@ -8,3 +8,6 @@ Rodar os seguintes comandos no terminal:
 npm i
 npm start
 ```
+
+#### Informações
+O uso do navegador Edge não é recomendado para o canvas.

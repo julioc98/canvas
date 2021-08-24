@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft, FiTrash } from 'react-icons/fi';
+import { FiArrowLeft } from 'react-icons/fi';
 
 
 import api from '../../services/api';
@@ -23,9 +23,18 @@ export default function NewIncident() {
     const history = useHistory();
 
     const ongId = localStorage.getItem('ongId');
+    const name = localStorage.getItem('name'); //pega do banco corretamente
     const selectedCanvas = localStorage.getItem('selectedCanvas');
 
     const [incidents, setIncidents] = useState([]);
+
+    function dataAtualFormatada(){
+        var data = new Date(),
+            dia  = data.getDate().toString().padStart(2, '0'),
+            mes  = (data.getMonth()+1).toString().padStart(2, '0'), //+1 pois no getMonth Janeiro começa com zero.
+            ano  = data.getFullYear();
+        return dia+"/"+mes+"/"+ano;
+    }
 
     useEffect(() => {
         api.get('profile',
@@ -103,12 +112,13 @@ export default function NewIncident() {
         <div className="new-incident-container">
             <section>
                 <img className="logoIncident" src={logoImg} alt="Be The Hero" />
-                <input
-                    placeholder="Título do Canvas"
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
-                />
-                <button className="button pdf" onClick={() => window.print()}>Exportar Canvas</button>
+                <div className="group-title title">
+                    {name}
+                </div>
+                <button className="button pdf" onClick={() => {
+                    document.title=name+' '+dataAtualFormatada();window.print() }}>
+                        Exportar Canvas
+                </button>
             </section>
             <div className="content">
                 <form onSubmit={handleNewIncident}>
