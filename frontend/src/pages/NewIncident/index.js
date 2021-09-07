@@ -18,7 +18,7 @@ export default function NewIncident() {
     const [description5, setDescription5] = useState('');
     const [description6, setDescription6] = useState('');
     const [description7, setDescription7] = useState('');
-    const [visible, setVisible] = useState(false);
+    // const [setVisible] = useState(false);
 
     const history = useHistory();
 
@@ -44,7 +44,7 @@ export default function NewIncident() {
                 },
             }
         ).then(response => {
-            const canvas = response.data.filter(canva => canva.id == selectedCanvas);
+            const canvas = response.data.filter(canva => canva.id === selectedCanvas);
             if (canvas[0] !== undefined) {
                 setTitle(canvas[0].title);
                 setDescription(canvas[0].description);
@@ -55,7 +55,7 @@ export default function NewIncident() {
                 setDescription6(canvas[0].description);
                 setDescription7(canvas[0].description);
                 setIncidents(canvas[0].id);
-                setVisible(true)
+                // setVisible(true)
             }
         });
     }, [ongId]);

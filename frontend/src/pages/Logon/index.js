@@ -18,14 +18,18 @@ export default function Logon() {
         e.preventDefault();
 
         try {
-            const response = await api.post('sessions', { id });
-
-            localStorage.setItem('ongId', id);
-            localStorage.setItem('ongName', response.data.name);
-
-            history.push('/profile');
-        } catch (err) {
-            alert('Falha no login, tente novamente.');
+            const response = await api.post('users/signin', {}, { 
+                auth: {
+                    username: email,
+                    password: id,
+                }
+             });
+             localStorage.setItem('ongId', id);
+             localStorage.setItem('ongName', response.data.name);
+             
+             history.push('/profile');
+            } catch (err) {
+                alert('Falha no login, tente novamente.');
         }
     }
 

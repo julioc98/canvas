@@ -43,7 +43,8 @@ export default function Register() {
             if(data.password !== data.passwordConfirm) {
                 alert(`As senhas não conferem`);
             } else {
-                const response = await api.post('ongs', data);
+                const response = await api.post('users/signup', data);
+                console.log(response)
                 alert(`Cadastrado(a) com sucesso!`);
                 history.push('/');
             }
@@ -71,7 +72,6 @@ export default function Register() {
                             type="email"
                             placeholder="E-Mail"
                             value={email}
-                            type="email"
                             id="email"
                             onChange={e => setEmail(e.target.value)}
                             required
