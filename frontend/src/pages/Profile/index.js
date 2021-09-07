@@ -13,8 +13,8 @@ export default function Profile() {
 
     const history = useHistory();
 
-    const ongId = localStorage.getItem('ongId');
-    const ongName = localStorage.getItem('ongName');
+    const ongId = localStorage.getItem('token');
+    const ongName = localStorage.getItem('name');
 
     useEffect(() => {
         api.get('profile',

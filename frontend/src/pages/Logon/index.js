@@ -24,9 +24,9 @@ export default function Logon() {
                     password: id,
                 }
              });
-             localStorage.setItem('ongId', id);
-             localStorage.setItem('ongName', response.data.name);
-             
+             localStorage.setItem('token', response.data.token);
+             localStorage.setItem('name', response.data.name);
+
              history.push('/profile');
             } catch (err) {
                 alert('Falha no login, tente novamente.');
