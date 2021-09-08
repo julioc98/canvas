@@ -13,20 +13,21 @@ export default function Profile() {
 
     const history = useHistory();
 
-    const ongId = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const ongName = localStorage.getItem('name');
 
     useEffect(() => {
-        api.get('profile',
+        api.get('canvas',
             {
                 headers: {
-                    Authorization: ongId,
-                },
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
             }
         ).then(response => {
             setIncidents(response.data);
         });
-    }, [ongId]);
+    }, [token]);
 
     async function handleEditCanvas(id) {
         try {
@@ -69,8 +70,7 @@ export default function Profile() {
                 <ul>
                     {incidents.map(incident => (
                         <li key={incident.id}>
-                            <strong>Título:</strong>
-                            <p>{incident.title}</p>
+                            <strong>Canvas:</strong>{incident.title + ' ID: ' + incident.id}
 
                             <button onClick={() => handleEditCanvas(incident.id)} type="button">
                                 <FiEdit size={20}  />

@@ -10,21 +10,22 @@ import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
 export default function NewIncident() {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+    const token = localStorage.getItem('token');
+    const name = localStorage.getItem('name'); //pega do banco corretamente
+    const selectedCanvas = localStorage.getItem('selectedCanvas');
+    
+    const [title, setTitle] = useState(name+' '+dataAtualFormatada());
+    const [description, setDescription] = useState(''); 
     const [description2, setDescription2] = useState('');
     const [description3, setDescription3] = useState('');
     const [description4, setDescription4] = useState('');
     const [description5, setDescription5] = useState('');
     const [description6, setDescription6] = useState('');
     const [description7, setDescription7] = useState('');
-    // const [setVisible] = useState(false);
+    const [setVisible] = useState(false);
 
     const history = useHistory();
 
-    const ongId = localStorage.getItem('ongId');
-    const name = localStorage.getItem('name'); //pega do banco corretamente
-    const selectedCanvas = localStorage.getItem('selectedCanvas');
 
     const [incidents, setIncidents] = useState([]);
 
@@ -37,34 +38,34 @@ export default function NewIncident() {
     }
 
     useEffect(() => {
-        api.get('profile',
+        api.get(`canvas/${selectedCanvas}`,
             {
                 headers: {
-                    Authorization: ongId,
-                },
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
             }
         ).then(response => {
-            const canvas = response.data.filter(canva => canva.id === selectedCanvas);
-            if (canvas[0] !== undefined) {
-                setTitle(canvas[0].title);
-                setDescription(canvas[0].description);
-                setDescription2(canvas[0].description);
-                setDescription3(canvas[0].description);
-                setDescription4(canvas[0].description);
-                setDescription5(canvas[0].description);
-                setDescription6(canvas[0].description);
-                setDescription7(canvas[0].description);
-                setIncidents(canvas[0].id);
-                // setVisible(true)
+            const canvas = response.data
+            if (canvas) {
+                setTitle(canvas.title);
+                setDescription(canvas.description);
+                setDescription2(canvas.description2);
+                setDescription3(canvas.description3);
+                setDescription4(canvas.description4);
+                setDescription5(canvas.description5);
+                setDescription6(canvas.description6);
+                setDescription7(canvas.description7);
+                setIncidents(canvas.id);
             }
         });
-    }, [ongId]);
+    }, [token]);
 
     async function handleNewIncident(e) {
         e.preventDefault();
 
         const data = {
-            title,
+            title, 
             description,
             description2,
             description3,
@@ -75,13 +76,13 @@ export default function NewIncident() {
         };
 
         try {
-            await api.post('incidents', data,
+            const response = await api.post('canvas', data,
                 {
                     headers: {
-                        Authorization: ongId,
-                    },
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
                 });
-
             history.push('/profile');
         } catch (error) {
             alert('Erro ao cadastrar o Canvas, tente novamente.')
@@ -94,7 +95,7 @@ export default function NewIncident() {
             await api.delete(`incidents/${id}`,
                 {
                     headers: {
-                        Authorization: ongId,
+                        Authorization: token,
                     },
                 }
             );
@@ -111,7 +112,7 @@ export default function NewIncident() {
     return (
         <div className="new-incident-container">
             <section>
-                <img className="logoIncident" src={logoImg} alt="Be The Hero" />
+                <img className="logoIncident" src={logoImg} alt="Canvas Projeto de Vida" />
                 <div className="group-title title">
                     {name}
                 </div>
