@@ -22,7 +22,7 @@ export default function NewIncident() {
     const [description5, setDescription5] = useState('');
     const [description6, setDescription6] = useState('');
     const [description7, setDescription7] = useState('');
-    const [setVisible] = useState(false);
+    const [visible, setVisible] = useState(false);
 
     const history = useHistory();
 
@@ -57,9 +57,10 @@ export default function NewIncident() {
                 setDescription6(canvas.description6);
                 setDescription7(canvas.description7);
                 setIncidents(canvas.id);
+                setVisible(true)
             }
         });
-    }, [token]);
+    }, [token, selectedCanvas]);
 
     async function handleNewIncident(e) {
         e.preventDefault();
@@ -90,13 +91,14 @@ export default function NewIncident() {
 
     }
 
-    async function handleDeleteCanvas(id) {
+    async function handleDeleteCanvas(selectedCanvas) {
         try {
-            await api.delete(`incidents/${id}`,
+            await api.delete(`canvas/${selectedCanvas}`,
                 {
                     headers: {
-                        Authorization: token,
-                    },
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
                 }
             );
 
@@ -186,9 +188,11 @@ export default function NewIncident() {
                              Voltar para Home
                         </Link>
                         <div className="group-button">
-                        <button  className="button deletar" onClick={() => handleDeleteCanvas(incidents)} type="button">
-                            Descartar Canvas
-                        </button>
+                        { visible ? 
+                            <button  className="button deletar" onClick={() => handleDeleteCanvas(selectedCanvas)} type="button">
+                                Descartar Canvas
+                            </button> 
+                        : null }
                             <button className="button salvar" type="submit">Salvar Canvas</button>
                         </div>
                     </div>
