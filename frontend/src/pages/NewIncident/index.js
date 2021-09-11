@@ -26,9 +26,6 @@ export default function NewIncident() {
 
     const history = useHistory();
 
-
-    const [incidents, setIncidents] = useState([]);
-
     function dataAtualFormatada(){
         var data = new Date(),
             dia  = data.getDate().toString().padStart(2, '0'),
@@ -38,29 +35,32 @@ export default function NewIncident() {
     }
 
     useEffect(() => {
-        api.get(`canvas/${selectedCanvas}`,
-            {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
+        if(token) {
+            api.get(`canvas/${selectedCanvas}`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
                 }
-            }
-        ).then(response => {
-            const canvas = response.data
-            if (canvas) {
-                setTitle(canvas.title);
-                setDescription(canvas.description);
-                setDescription2(canvas.description2);
-                setDescription3(canvas.description3);
-                setDescription4(canvas.description4);
-                setDescription5(canvas.description5);
-                setDescription6(canvas.description6);
-                setDescription7(canvas.description7);
-                setIncidents(canvas.id);
-                setVisible(true)
-            }
-        });
-    }, [token, selectedCanvas]);
+            ).then(response => {
+                const canvas = response.data
+                if (canvas) {
+                    setTitle(canvas.title);
+                    setDescription(canvas.description);
+                    setDescription2(canvas.description2);
+                    setDescription3(canvas.description3);
+                    setDescription4(canvas.description4);
+                    setDescription5(canvas.description5);
+                    setDescription6(canvas.description6);
+                    setDescription7(canvas.description7);
+                    setVisible(true)
+                }
+            });
+        } else {
+            history.push('/login');
+        }
+    }, [token, selectedCanvas, history]);
 
     async function handleNewIncident(e, selectedCanvas) {
         e.preventDefault();
@@ -78,7 +78,7 @@ export default function NewIncident() {
 
         try {
             if(selectedCanvas) {
-                const response = await api.put(`canvas/${selectedCanvas}`, data,
+                await api.put(`canvas/${selectedCanvas}`, data,
                 {
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -86,7 +86,7 @@ export default function NewIncident() {
                     }
                 });
             } else {
-                const response = await api.post('canvas', data,
+                await api.post('canvas', data,
                     {
                         headers: {
                             'Authorization': `Bearer ${token}`,
@@ -111,9 +111,6 @@ export default function NewIncident() {
                     }
                 }
             );
-
-            //setIncidents(incidents.filter(incident => incident !== id))
-
             history.push('/profile');
         } catch (error) {
             alert('Erro ao deletar Canvas, tente novamente');

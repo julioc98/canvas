@@ -14,20 +14,24 @@ export default function Profile() {
     const history = useHistory();
 
     const token = localStorage.getItem('token');
-    const ongName = localStorage.getItem('name');
+    const name = localStorage.getItem('name');
 
     useEffect(() => {
-        api.get('canvas',
-            {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
+        if(token) {
+            api.get('canvas',
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
                 }
-            }
-        ).then(response => {
-            setIncidents(response.data);
-        });
-    }, [token]);
+            ).then(response => {
+                setIncidents(response.data);
+            });
+        } else {
+            history.push('/login');
+        }
+    }, [token, history]);
 
     async function handleEditCanvas(id) {
         try {
@@ -57,7 +61,7 @@ export default function Profile() {
         <div className="profile-container">
             <header>
                 <img src={logoImg} alt="Canvas Projeto de Vida" />
-                <span>Bem vindo(a), {ongName}</span>
+                <span>Bem vindo(a), {name}</span>
 
                 <Link className="button" onClick={handleCleanCanvas} to="/canvas">Cadastrar novo canvas</Link>
                 <button onClick={handleLogout} type="button" alt="Sair">
