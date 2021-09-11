@@ -84,7 +84,6 @@ export default function Register() {
                             id="phone" 
                             data-politespace data-grouplength="3,3,4" 
                             onChange={e => setWhatsapp(e.target.value)}
-                            required
                         />
                         <input
                             placeholder="Senha"
