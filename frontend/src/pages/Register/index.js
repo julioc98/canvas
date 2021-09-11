@@ -73,7 +73,7 @@ export default function Register() {
                             placeholder="E-Mail"
                             value={email}
                             id="email"
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={e => setEmail(e.target.value.toLowerCase())}
                             required
                         />
 

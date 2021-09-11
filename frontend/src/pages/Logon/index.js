@@ -47,7 +47,7 @@ export default function Logon() {
                             placeholder="E-Mail"
                             type="email"
                             value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={e => setEmail(e.target.value.toLowerCase())}
                             required
                             id="email"
                         />
