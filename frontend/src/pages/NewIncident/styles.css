@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin: 32px auto;
 }
 
 .new-incident-container .content {
@@ -16,7 +17,6 @@
 
 .new-incident-container section {
     width: 100%;
-    margin: 1%;
     display: flex;
 }
 
@@ -162,7 +162,6 @@
     border: 0;
     border-radius: 8px;
     color: #FFF;
-    font-weight: 700;
     margin-top: 16px;
     display: inline-block;
     text-align: center;
@@ -207,4 +206,13 @@
     @page {size: landscape}
 }
 
+.header {
+    padding-left: 5%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+}
+
+.logo {
+    width: 100%;
+} 
 

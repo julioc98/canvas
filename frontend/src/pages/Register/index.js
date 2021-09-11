@@ -57,7 +57,9 @@ export default function Register() {
         <div className="register-container">
             <div className="content">
                 <section>
-                    <img className="logoRegister" src={logoImg} alt="Canvas Projeto de Vida" />
+                    <Link to="/">
+                        <img className="logoRegister logoButton" src={logoImg} alt="Canvas Projeto de Vida" />
+                    </Link>
                     <form onSubmit={handleRegister}>
                         <input
                             placeholder="Nome Completo"

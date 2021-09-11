@@ -60,8 +60,8 @@ export default function Profile() {
     return (
         <div className="profile-container">
             <header>
-                <img src={logoImg} alt="Canvas Projeto de Vida" />
-                <span>Bem vindo(a), {name}</span>
+                <img className="logoButton" src={logoImg} alt="Canvas Projeto de Vida" />
+                <span className="titleProfile" >Bem vindo(a), {name}</span>
 
                 <Link className="button" onClick={handleCleanCanvas} to="/canvas">Cadastrar novo canvas</Link>
                 <button onClick={handleLogout} type="button" alt="Sair">

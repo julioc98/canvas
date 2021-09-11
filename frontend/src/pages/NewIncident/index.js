@@ -120,11 +120,13 @@ export default function NewIncident() {
 
     return (
         <div className="new-incident-container">
-            <section>
-                <img className="logoIncident" src={logoImg} alt="Canvas Projeto de Vida" />
-                <div className="group-title title">
+            <section className="header">
+            <Link className="logoIncident" to="/profile">
+                <img className="logo" src={logoImg} alt="Canvas Projeto de Vida" />
+            </Link>
+                <span className="group-title title">
                     {name}
-                </div>
+                </span>
                 <button className="button pdf" onClick={() => {
                     document.title=name+' '+dataAtualFormatada();window.print() }}>
                         Exportar Canvas
