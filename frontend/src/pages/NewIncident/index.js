@@ -62,7 +62,7 @@ export default function NewIncident() {
         });
     }, [token, selectedCanvas]);
 
-    async function handleNewIncident(e) {
+    async function handleNewIncident(e, selectedCanvas) {
         e.preventDefault();
 
         const data = {
@@ -77,13 +77,23 @@ export default function NewIncident() {
         };
 
         try {
-            const response = await api.post('canvas', data,
+            if(selectedCanvas) {
+                const response = await api.put(`canvas/${selectedCanvas}`, data,
                 {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
                     }
                 });
+            } else {
+                const response = await api.post('canvas', data,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+            }
             history.push('/profile');
         } catch (error) {
             alert('Erro ao cadastrar o Canvas, tente novamente.')
@@ -124,7 +134,7 @@ export default function NewIncident() {
                 </button>
             </section>
             <div className="content">
-                <form onSubmit={handleNewIncident}>
+                <form onSubmit={e => handleNewIncident(e, selectedCanvas)}>
                     <div className="canvas-content">
                         <div className="canvas-line1">
                             <div className="canvas-div laranja">
