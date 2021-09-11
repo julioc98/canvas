@@ -29,7 +29,7 @@ export default function Profile() {
                 setIncidents(response.data);
             });
         } else {
-            history.push('/login');
+            history.push('/');
         }
     }, [token, history]);
 

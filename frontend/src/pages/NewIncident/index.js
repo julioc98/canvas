@@ -58,7 +58,7 @@ export default function NewIncident() {
                 }
             });
         } else {
-            history.push('/login');
+            history.push('/');
         }
     }, [token, selectedCanvas, history]);
 
