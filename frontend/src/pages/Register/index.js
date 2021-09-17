@@ -43,7 +43,8 @@ export default function Register() {
             if(data.password !== data.passwordConfirm) {
                 alert(`As senhas não conferem`);
             } else {
-                const response = await api.post('ongs', data);
+                const response = await api.post('users/signup', data);
+                console.log(response)
                 alert(`Cadastrado(a) com sucesso!`);
                 history.push('/');
             }
@@ -56,7 +57,9 @@ export default function Register() {
         <div className="register-container">
             <div className="content">
                 <section>
-                    <img className="logoRegister" src={logoImg} alt="Canvas Projeto de Vida" />
+                    <Link to="/">
+                        <img className="logoRegister logoButton" src={logoImg} alt="Canvas Projeto de Vida" />
+                    </Link>
                     <form onSubmit={handleRegister}>
                         <input
                             placeholder="Nome Completo"
@@ -71,9 +74,8 @@ export default function Register() {
                             type="email"
                             placeholder="E-Mail"
                             value={email}
-                            type="email"
                             id="email"
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={e => setEmail(e.target.value.toLowerCase())}
                             required
                         />
 
@@ -84,7 +86,6 @@ export default function Register() {
                             id="phone" 
                             data-politespace data-grouplength="3,3,4" 
                             onChange={e => setWhatsapp(e.target.value)}
-                            required
                         />
                         <input
                             placeholder="Senha"

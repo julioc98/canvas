@@ -18,14 +18,18 @@ export default function Logon() {
         e.preventDefault();
 
         try {
-            const response = await api.post('sessions', { id });
+            const response = await api.post('users/signin', {}, { 
+                auth: {
+                    username: email,
+                    password: id,
+                }
+             });
+             localStorage.setItem('token', response.data.token);
+             localStorage.setItem('name', response.data.name);
 
-            localStorage.setItem('ongId', id);
-            localStorage.setItem('ongName', response.data.name);
-
-            history.push('/profile');
-        } catch (err) {
-            alert('Falha no login, tente novamente.');
+             history.push('/profile');
+            } catch (err) {
+                alert('Falha no login, tente novamente.');
         }
     }
 
@@ -43,7 +47,7 @@ export default function Logon() {
                             placeholder="E-Mail"
                             type="email"
                             value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={e => setEmail(e.target.value.toLowerCase())}
                             required
                             id="email"
                         />

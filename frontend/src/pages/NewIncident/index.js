@@ -10,8 +10,12 @@ import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
 export default function NewIncident() {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+    const token = localStorage.getItem('token');
+    const name = localStorage.getItem('name'); //pega do banco corretamente
+    const selectedCanvas = localStorage.getItem('selectedCanvas');
+    
+    const [title, setTitle] = useState(name+' '+dataAtualFormatada());
+    const [description, setDescription] = useState(''); 
     const [description2, setDescription2] = useState('');
     const [description3, setDescription3] = useState('');
     const [description4, setDescription4] = useState('');
@@ -22,12 +26,6 @@ export default function NewIncident() {
 
     const history = useHistory();
 
-    const ongId = localStorage.getItem('ongId');
-    const name = localStorage.getItem('name'); //pega do banco corretamente
-    const selectedCanvas = localStorage.getItem('selectedCanvas');
-
-    const [incidents, setIncidents] = useState([]);
-
     function dataAtualFormatada(){
         var data = new Date(),
             dia  = data.getDate().toString().padStart(2, '0'),
@@ -37,34 +35,38 @@ export default function NewIncident() {
     }
 
     useEffect(() => {
-        api.get('profile',
-            {
-                headers: {
-                    Authorization: ongId,
-                },
-            }
-        ).then(response => {
-            const canvas = response.data.filter(canva => canva.id == selectedCanvas);
-            if (canvas[0] !== undefined) {
-                setTitle(canvas[0].title);
-                setDescription(canvas[0].description);
-                setDescription2(canvas[0].description);
-                setDescription3(canvas[0].description);
-                setDescription4(canvas[0].description);
-                setDescription5(canvas[0].description);
-                setDescription6(canvas[0].description);
-                setDescription7(canvas[0].description);
-                setIncidents(canvas[0].id);
-                setVisible(true)
-            }
-        });
-    }, [ongId]);
+        if(token) {
+            api.get(`canvas/${selectedCanvas}`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                }
+            ).then(response => {
+                const canvas = response.data
+                if (canvas) {
+                    setTitle(canvas.title);
+                    setDescription(canvas.description);
+                    setDescription2(canvas.description2);
+                    setDescription3(canvas.description3);
+                    setDescription4(canvas.description4);
+                    setDescription5(canvas.description5);
+                    setDescription6(canvas.description6);
+                    setDescription7(canvas.description7);
+                    setVisible(true)
+                }
+            });
+        } else {
+            history.push('/');
+        }
+    }, [token, selectedCanvas, history]);
 
-    async function handleNewIncident(e) {
+    async function handleNewIncident(e, selectedCanvas) {
         e.preventDefault();
 
         const data = {
-            title,
+            title, 
             description,
             description2,
             description3,
@@ -75,13 +77,23 @@ export default function NewIncident() {
         };
 
         try {
-            await api.post('incidents', data,
+            if(selectedCanvas) {
+                await api.put(`canvas/${selectedCanvas}`, data,
                 {
                     headers: {
-                        Authorization: ongId,
-                    },
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
                 });
-
+            } else {
+                await api.post('canvas', data,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+            }
             history.push('/profile');
         } catch (error) {
             alert('Erro ao cadastrar o Canvas, tente novamente.')
@@ -89,18 +101,16 @@ export default function NewIncident() {
 
     }
 
-    async function handleDeleteCanvas(id) {
+    async function handleDeleteCanvas(selectedCanvas) {
         try {
-            await api.delete(`incidents/${id}`,
+            await api.delete(`canvas/${selectedCanvas}`,
                 {
                     headers: {
-                        Authorization: ongId,
-                    },
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
                 }
             );
-
-            //setIncidents(incidents.filter(incident => incident !== id))
-
             history.push('/profile');
         } catch (error) {
             alert('Erro ao deletar Canvas, tente novamente');
@@ -110,18 +120,20 @@ export default function NewIncident() {
 
     return (
         <div className="new-incident-container">
-            <section>
-                <img className="logoIncident" src={logoImg} alt="Be The Hero" />
-                <div className="group-title title">
+            <section className="header">
+            <Link className="logoIncident" to="/profile">
+                <img className="logo" src={logoImg} alt="Canvas Projeto de Vida" />
+            </Link>
+                <span className="group-title title">
                     {name}
-                </div>
+                </span>
                 <button className="button pdf" onClick={() => {
                     document.title=name+' '+dataAtualFormatada();window.print() }}>
                         Exportar Canvas
                 </button>
             </section>
             <div className="content">
-                <form onSubmit={handleNewIncident}>
+                <form onSubmit={e => handleNewIncident(e, selectedCanvas)}>
                     <div className="canvas-content">
                         <div className="canvas-line1">
                             <div className="canvas-div laranja">
@@ -185,9 +197,11 @@ export default function NewIncident() {
                              Voltar para Home
                         </Link>
                         <div className="group-button">
-                        <button  className="button deletar" onClick={() => handleDeleteCanvas(incidents)} type="button">
-                            Descartar Canvas
-                        </button>
+                        { visible ? 
+                            <button  className="button deletar" onClick={() => handleDeleteCanvas(selectedCanvas)} type="button">
+                                Descartar Canvas
+                            </button> 
+                        : null }
                             <button className="button salvar" type="submit">Salvar Canvas</button>
                         </div>
                     </div>

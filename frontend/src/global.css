@@ -98,4 +98,7 @@ margin-right: 8px;
     opacity: 0.8;
 }
 
+.logoButton:hover {
+    filter: brightness(90%);
+}
 

@@ -13,20 +13,25 @@ export default function Profile() {
 
     const history = useHistory();
 
-    const ongId = localStorage.getItem('ongId');
-    const ongName = localStorage.getItem('ongName');
+    const token = localStorage.getItem('token');
+    const name = localStorage.getItem('name');
 
     useEffect(() => {
-        api.get('profile',
-            {
-                headers: {
-                    Authorization: ongId,
-                },
-            }
-        ).then(response => {
-            setIncidents(response.data);
-        });
-    }, [ongId]);
+        if(token) {
+            api.get('canvas',
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                }
+            ).then(response => {
+                setIncidents(response.data);
+            });
+        } else {
+            history.push('/');
+        }
+    }, [token, history]);
 
     async function handleEditCanvas(id) {
         try {
@@ -55,8 +60,8 @@ export default function Profile() {
     return (
         <div className="profile-container">
             <header>
-                <img src={logoImg} alt="Canvas Projeto de Vida" />
-                <span>Bem vindo(a), {ongName}</span>
+                <img className="logoButton" src={logoImg} alt="Canvas Projeto de Vida" />
+                <span className="titleProfile" >Bem vindo(a), {name}</span>
 
                 <Link className="button" onClick={handleCleanCanvas} to="/canvas">Cadastrar novo canvas</Link>
                 <button onClick={handleLogout} type="button" alt="Sair">
@@ -69,8 +74,7 @@ export default function Profile() {
                 <ul>
                     {incidents.map(incident => (
                         <li key={incident.id}>
-                            <strong>Título:</strong>
-                            <p>{incident.title}</p>
+                            <strong>Canvas:</strong>{incident.title + ' ID: ' + incident.id}
 
                             <button onClick={() => handleEditCanvas(incident.id)} type="button">
                                 <FiEdit size={20}  />
